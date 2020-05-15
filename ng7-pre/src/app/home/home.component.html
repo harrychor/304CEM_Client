@@ -1,0 +1,10 @@
+<h1>Home</h1>
+<h1>Search book</h1>
+<button (click)="firstClick()">Search</button>
+<h1>Books</h1>
+<ul *ngIf="books">
+ <li *ngFor="let book of books">
+ <h3>{{ book.title }} </h3>
+ <p>{{ book.description}} </p>
+ </li>
+</ul>
