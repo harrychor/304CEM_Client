@@ -1,8 +1,9 @@
+
 <h1>Search moive</h1>
 <input #newSearch
       (keyup.enter)="addSearch(newSearch.value)"
       (blur)="addSearch(newSearch.value); newSearch.value='' ">
-<button (click)="addSearch(newSearch.value)">Search</button>
+<button class="button" (click)="addSearch(newSearch.value)">Search</button>
 <h1>Moive</h1>
 <ul *ngIf="moives">
  <li *ngFor="let moive of moives; index as i">

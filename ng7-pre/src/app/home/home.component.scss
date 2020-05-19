@@ -14,5 +14,21 @@ ul {
     margin-left: 20px;
     text-align: left;
     }
+    
+    
     }
    }
+   .button {
+    background: #66ccff;
+      border: none;
+      color: black;
+      text-transform: uppercase;
+      border-radius: 4px;
+      padding: 1em;
+      opacity: 0.6;
+      transition: 0.3s;
+      display: inline-block;
+      text-decoration: none;
+      cursor: pointer;
+  }
+  .button:hover {opacity: 1}
