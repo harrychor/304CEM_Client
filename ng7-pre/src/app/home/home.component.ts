@@ -5,24 +5,26 @@ import { DataService } from '../data.service';
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
+  
 })
 export class HomeComponent implements OnInit {
   users: Object;
-  books:Object;
+  moives:Object;
   constructor(private data: DataService) { }
 
-  ngOnInit() {
-    this.data.getBooks().subscribe(data=>{
-    this.books = data
-    console.log(this.books)
+  addSearch(newSearch:string){
+    if(newSearch!=''){
+    this.data.getMoives(`${newSearch}`).subscribe(data=>{
+    
+    this.moives = data;			
+    console.log(this.moives)
     })
+    }
     }
    
 
-  firstClick() {
-    this.data.firstClick();
+ ngOnInit() {
 
- }
-
+}
 
 }

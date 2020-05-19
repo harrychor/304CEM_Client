@@ -1,10 +1,12 @@
-<h1>Home</h1>
-<h1>Search book</h1>
-<button (click)="firstClick()">Search</button>
-<h1>Books</h1>
-<ul *ngIf="books">
- <li *ngFor="let book of books">
- <h3>{{ book.title }} </h3>
- <p>{{ book.description}} </p>
+<h1>Search moive</h1>
+<input #newSearch
+      (keyup.enter)="addSearch(newSearch.value)"
+      (blur)="addSearch(newSearch.value); newSearch.value='' ">
+<button (click)="addSearch(newSearch.value)">Search</button>
+<h1>Moive</h1>
+<ul *ngIf="moives">
+ <li *ngFor="let moive of moives; index as i">
+ <h3>{{ moive.Title }} </h3>
+ <p><img src="{{ moive.Poster }}"> </p>
  </li>
 </ul>
