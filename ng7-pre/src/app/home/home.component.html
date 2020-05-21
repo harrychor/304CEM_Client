@@ -8,6 +8,8 @@
 <ul *ngIf="moives">
  <li *ngFor="let moive of moives; index as i">
  <h3>{{ moive.Title }} </h3>
- <p><img src="{{ moive.Poster }}"> </p>
+ <p>
+       <img src="{{ moive.Poster }}"> 
+      </p>
  </li>
 </ul>

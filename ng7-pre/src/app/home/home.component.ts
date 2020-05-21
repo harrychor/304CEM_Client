@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
 
+interface moiveData{
+  imdbID: string
+}
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -16,13 +20,14 @@ export class HomeComponent implements OnInit {
     if(newSearch!=''){
     this.data.getMoives(`${newSearch}`).subscribe(data=>{
     
-    this.moives = data;			
+    this.moives = data;	
     console.log(this.moives)
     })
     }
     }
-   
 
+  
+  
  ngOnInit() {
 
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms'; 
+import { DataService } from '../data.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -9,16 +10,21 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class LoginComponent implements OnInit {
 
   
-  constructor() { }
+  constructor(private data: DataService, private router: Router) { }
 
   ngOnInit() { 
   }
-  onRegister(){
+  toRegister(event){
+    this.router.navigate(['register'])
   }
   
   login(event) {
     event.preventDefault()
-    console.log(event)
+    const target = event.target
+    const email = target.querySelector('#email').value
+    const password = target.querySelector('#password').value
+    console.log(email, password)
+    this.data.Authuser(email,password)
   }
 
   

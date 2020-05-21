@@ -1,1 +1,17 @@
-<p>register works!</p>
+<h1>Welcome to Register Page</h1> 
+<div class="container">
+    <form (submit)="Register($event)">
+    <div>
+      <input type="text" autocomplete="off" placeholder="Email" id="email">
+    </div>
+    <div>
+      <input type="password" autocomplete="off" placeholder="Password" id="password">
+    </div>
+    <div>
+    <div>
+        <input type="password" autocomplete="off" placeholder="Confirm Password" id="cpassword">
+    </div>
+      <button class="button" type="submit" id="submit">Register</button>
+
+    </div>
+    </form>
