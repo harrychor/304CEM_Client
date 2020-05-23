@@ -8,17 +8,22 @@ import {AuthService} from './auth.service';
 
 interface myData{
   token: string
+  email: string
   message:string
+}
+interface userdata{
+  username: string
 }
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
+  
 constructor(private http: HttpClient, private router: Router ,private authservice: AuthService) { }
 
 
-  
+//Auth user  
   Authuser(email, password){
     let authorizationData = 'Basic '+  btoa(`${email}:${password}`);
 
@@ -29,7 +34,7 @@ constructor(private http: HttpClient, private router: Router ,private authservic
 
     console.log(JSON.stringify(httpOptions));
 
-    const cors = 'https://cors-anywhere.herokuapp.com/';
+
   return this.http.post<myData>('https://cors-anywhere.herokuapp.com/https://harrychor304cembackend.herokuapp.com/auth',{
     'email':`${email}`,
     'password':`${password}`
@@ -41,24 +46,19 @@ constructor(private http: HttpClient, private router: Router ,private authservic
     console.log(data.token)
     if (data.token != null){
       this.authservice.setLoggedIn(true);
-      this.router.navigate(['contact'])
+      this.getuserData(email);
+      this.router.navigate(['profile'])
     }else{
       window.alert(data.message)
     }
   })
   }
-
+//register user
   Registeruser(email, password){
-    let authorizationData = 'Basic '+  btoa(`${email}:${password}`);
-
     const httpOptions = new  HttpHeaders()
 	  .set('Content-type', 'application/json')
-	  .set('Authorization',`${authorizationData}`)
     .set('X-Requested-With', 'HttpRequest')
 
-    console.log(JSON.stringify(httpOptions));
-
-    const cors = 'https://cors-anywhere.herokuapp.com/';
   return this.http.post<myData>('https://cors-anywhere.herokuapp.com/https://harrychor304cembackend.herokuapp.com/register',{
     'email':`${email}`,
     'password':`${password}`
@@ -67,17 +67,63 @@ constructor(private http: HttpClient, private router: Router ,private authservic
     catchError(this.handleError))
   .subscribe(data => {
     console.log(data," is what we got from the server")
-    console.log(data.token)
-    if (data.token != null){
+    if (data = null){
       this.authservice.setLoggedIn(true);
-      this.router.navigate(['home'])
-    }else{
-      window.alert(data.message)
+      
     }
   })
   }
+//create user profile
+  GenUserProfile(username, email){
+    const httpOptions = new  HttpHeaders()
+	  .set('Content-type', 'application/json')
+    .set('X-Requested-With', 'HttpRequest')
+
+  return this.http.post<myData>('https://cors-anywhere.herokuapp.com/https://harrychor304cembackend.herokuapp.com/userprofile',{
+    'username':`${username}`,
+    'email':`${email}`
+  },{headers:httpOptions}).pipe(
+    retry(1),
+    catchError(this.handleError))
+  .subscribe(data => {
+    console.log(data," is what we got from the server")
+  })
+  }
+
+//get user data
+  getuserData(email){
+    const httpOptions = new  HttpHeaders()
+	  .set('Content-type', 'application/json')
+    .set('X-Requested-With', 'HttpRequest')
+    return this.http.get<userdata>(`https://cors-anywhere.herokuapp.com/https://harrychor304cembackend.herokuapp.com/userprofile/${email}`).pipe(
+      retry(1),
+      catchError(this.handleError),
+      ).subscribe(data =>{
+        console.log(data)
+        console.log(data[0]['username'])
+        sessionStorage.setItem('email', data[0]['email']);
+        sessionStorage.setItem('loggedUser', data[0]['username']);
+      });
+  }
+//update user data
+  updateuserDate(username){
+    const httpOptions = new  HttpHeaders()
+	  .set('Content-type', 'application/json')
+    .set('X-Requested-With', 'HttpRequest')
+    const email = sessionStorage.getItem('email')
+    sessionStorage.setItem('loggedUser', username);
+    return this.http.put<userdata>(`https://cors-anywhere.herokuapp.com/https://harrychor304cembackend.herokuapp.com/userprofile/${email}`,{
+      'username':`${username}`
+    }).pipe(
+      retry(1),
+      catchError(this.handleError),
+      ).subscribe(data =>{
+        console.log(data)
+      });
+  }
 
 
+//get moive
   getMoives(word:string) {
     return this.http.get(`http://localhost:3000/moive/${word}`).pipe(
       retry(1),

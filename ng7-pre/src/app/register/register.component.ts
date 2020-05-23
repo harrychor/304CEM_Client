@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService } from '../data.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -7,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegisterComponent implements OnInit {
 
-  constructor() { }
+  constructor(private data: DataService, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -15,17 +17,19 @@ export class RegisterComponent implements OnInit {
     event.preventDefault()
     const error = []
     const target = event.target
+    const username = target.querySelector('#username').value
     const email = target.querySelector('#email').value
     const password = target.querySelector('#password').value
     const cpassword = target.querySelector('#cpassword').value
 
     if (password != cpassword){
       error.push("Password not match")
-    }
-
-    if (error.length>0) {
-
-    }
+    }else{
+    console.log(username, email, password)
+    this.data.Registeruser(email,password)
+    this.data.GenUserProfile(username,email)
+    this.router.navigate([''])
+  }
   }
 
 }

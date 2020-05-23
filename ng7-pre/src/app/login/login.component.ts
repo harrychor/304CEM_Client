@@ -25,6 +25,7 @@ export class LoginComponent implements OnInit {
     const password = target.querySelector('#password').value
     console.log(email, password)
     this.data.Authuser(email,password)
+    this.data.getuserData(email)
   }
 
   
