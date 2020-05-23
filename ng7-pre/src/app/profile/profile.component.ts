@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
+import {Router} from '@angular/router';
+import { EventEmitterService } from '../event-emitter.service';
+
+
 
 @Component({
   selector: 'app-profile',
@@ -9,7 +13,7 @@ import { DataService } from '../data.service';
 export class ProfileComponent implements OnInit {
   userDisplayName: string;
 
-  constructor(private data:DataService) { }
+  constructor(private data:DataService,private router: Router,private eventEmitterService: EventEmitterService) { }
 
   ngOnInit(): void {
     this.userDisplayName = sessionStorage.getItem('loggedUser');
@@ -23,4 +27,12 @@ export class ProfileComponent implements OnInit {
     this.data.updateuserDate(Nusername)
     this.ngOnInit()
   }
+  Logout(event){
+    event.preventDefault()
+    const target = event.target
+    localStorage.clear();
+    this.router.navigate([''])
+    this.eventEmitterService.onloginButtonClick()
+  }
+
 }

@@ -12,6 +12,7 @@ import { RegisterComponent } from './register/register.component';
 import { AuthGuard } from './auth.guard';
 import { RouterModule } from '@angular/router';
 import { ProfileComponent } from './profile/profile.component';
+import { EventEmitterService } from './event-emitter.service';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,9 @@ import { ProfileComponent } from './profile/profile.component';
       }
     ])
   ],
-  providers: [],
+  providers: [
+    EventEmitterService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

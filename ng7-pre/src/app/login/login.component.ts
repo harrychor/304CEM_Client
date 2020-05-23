@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
 import { Router } from '@angular/router';
+import { EventEmitterService } from '../event-emitter.service'; 
 
 @Component({
   selector: 'app-login',
@@ -10,7 +11,7 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
 
   
-  constructor(private data: DataService, private router: Router) { }
+  constructor(private data: DataService, private router: Router,private eventEmitterService: EventEmitterService) { }
 
   ngOnInit() { 
   }
@@ -26,6 +27,7 @@ export class LoginComponent implements OnInit {
     console.log(email, password)
     this.data.Authuser(email,password)
     this.data.getuserData(email)
+    this.eventEmitterService.onloginButtonClick()
   }
 
   

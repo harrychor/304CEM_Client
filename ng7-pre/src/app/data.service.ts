@@ -5,6 +5,8 @@ import { Observable, throwError } from 'rxjs';
 import { HttpHeaders } from '@angular/common/http';
 import {Router} from '@angular/router';
 import {AuthService} from './auth.service';
+import { EventEmitterService } from './event-emitter.service';
+
 
 interface myData{
   token: string
@@ -20,7 +22,7 @@ interface userdata{
 })
 export class DataService {
   
-constructor(private http: HttpClient, private router: Router ,private authservice: AuthService) { }
+constructor(private http: HttpClient, private router: Router ,private authservice: AuthService, private eventEmitterService: EventEmitterService) { }
 
 
 //Auth user  
@@ -47,6 +49,7 @@ constructor(private http: HttpClient, private router: Router ,private authservic
     if (data.token != null){
       this.authservice.setLoggedIn(true);
       this.getuserData(email);
+      this.eventEmitterService.onloginButtonClick()
       this.router.navigate(['profile'])
     }else{
       window.alert(data.message)
