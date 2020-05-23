@@ -31,6 +31,7 @@ export class ProfileComponent implements OnInit {
     event.preventDefault()
     const target = event.target
     localStorage.clear();
+    sessionStorage.clear();
     this.router.navigate([''])
     this.eventEmitterService.onloginButtonClick()
   }

@@ -125,6 +125,49 @@ constructor(private http: HttpClient, private router: Router ,private authservic
       });
   }
 
+//add favourites
+  addFavData(Title,Year,imdbID,Poster){
+    const httpOptions = new  HttpHeaders()
+	  .set('Content-type', 'application/json')
+    .set('X-Requested-With', 'HttpRequest')
+    const email = sessionStorage.getItem('email')
+    return this.http.post<myData>('https://cors-anywhere.herokuapp.com/https://harrychor304cembackend.herokuapp.com/favourites',{
+      'email':`${email}`,
+      'Title':`${Title}`,
+      'Year':`${Year}`,
+      'imdbID':`${imdbID}`,
+      'Poster':`${Poster}`
+    }).pipe(
+      retry(1),
+      catchError(this.handleError),
+      ).subscribe(data =>{
+        console.log(data)
+      });
+  }
+
+//get favourites moive
+  getFavData(){
+    const httpOptions = new  HttpHeaders()
+	  .set('Content-type', 'application/json')
+    .set('X-Requested-With', 'HttpRequest')
+    const email = sessionStorage.getItem('email')
+    return this.http.get<userdata>(`https://cors-anywhere.herokuapp.com/https://harrychor304cembackend.herokuapp.com/favourites/${email}`).pipe(
+      retry(1),
+      catchError(this.handleError),
+      )
+  }
+
+//delete favourites moive
+  delFavData(delID){
+    const httpOptions = new  HttpHeaders()
+	  .set('Content-type', 'application/json')
+    .set('X-Requested-With', 'HttpRequest')
+    return this.http.get<userdata>(`https://cors-anywhere.herokuapp.com/https://harrychor304cembackend.herokuapp.com/favourites/${delID}`).pipe(
+      retry(1),
+      catchError(this.handleError),
+      )
+  }
+
 
 //get moive
   getMoives(word:string) {

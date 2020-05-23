@@ -1,1 +1,10 @@
-<p>contact works!</p>
+<h1>Favourites Moive</h1>
+<ul *ngIf="moives">
+ <li *ngFor="let moive of moives; index as i">
+ <h3>{{ moive.Title }}</h3>
+ <h3>Year: {{ moive.Year }}</h3>       
+ <p><img src="{{ moive.Poster }}"></p>
+ <button class="button" (click)="delFav(i)" confirm="Are you sure"
+ 
+ >Delete Favourites</button>
+ </li>

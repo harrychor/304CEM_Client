@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
+import { Title } from '@angular/platform-browser';
 
 interface moiveData{
   imdbID: string
@@ -26,6 +27,14 @@ export class HomeComponent implements OnInit {
     }
     }
 
+  addFav(i:number){
+    console.log(this.moives[i])
+    const Title = this.moives[i]['Title']
+    const Year = this.moives[i]['Year']
+    const imdbID = this.moives[i]['imdbID']
+    const Poster = this.moives[i]['Poster']
+    this.data.addFavData(Title,Year,imdbID,Poster)
+  }
   
   
  ngOnInit() {

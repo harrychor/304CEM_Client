@@ -6,7 +6,7 @@
     <li><a routerLink="/">Home</a></li>
     <li *ngIf="loginDP"><a routerLink="/login">Sigin in or up</a></li>
     <li *ngIf="userDP"><a routerLink="/profile">{{userDisplayName}}</a></li>
-    <li><a routerLink="/contact">My Favourites</a></li>
+    <li *ngIf="userDP"><a routerLink="/contact">My Favourites</a></li>
     </ul>
     </nav>
     </div>
