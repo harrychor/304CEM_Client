@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
-import{ConfirmationPopoverModule} from 'angular-confirmation-popover';
 
 @Component({
   selector: 'app-contact',
