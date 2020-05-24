@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, Component } from '@angular/core';
-import{ConfirmationPopoverModule} from 'angular-confirmation-popover';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -29,9 +28,6 @@ import { EventEmitterService } from './event-emitter.service';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    ConfirmationPopoverModule.forRoot({
-        confirmButtonType:'danger' // set as defaults
-    }),
     RouterModule.forRoot([
       {
         path: 'profile',
