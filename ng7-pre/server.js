@@ -4,10 +4,10 @@ const path = require('path');
 const app = express();
 
 // Serve only the static files form the dist directory
-app.use(express.static(__dirname,  '/dist/304CEM_Client/ng7-pre'));
+app.use(express.static(__dirname,  '/dist/ng7-pre'));
 
 app.get('*', function(req,res) { 
-    res.sendFile(path.join(__dirname, '/dist/304CEM_Client/ng7-pre/index.html'));
+    res.sendFile(path.join(__dirname, '/dist/ng7-pre/index.html'));
 });
 
 // Start the app by listening on the default Heroku port
