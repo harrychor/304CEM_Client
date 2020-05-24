@@ -7,10 +7,12 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "postinstall": "ng build --aot --prod"
   },
   "engines": {
-    "node": "12.11.1"
+    "node": "v10.16.3",
+    "npm": "6.9.0"
     },
   "private": true,
   "dependencies": {
