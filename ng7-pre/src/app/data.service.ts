@@ -171,7 +171,10 @@ constructor(private http: HttpClient, private router: Router ,private authservic
 
 //get moive
   getMoives(word:string) {
-    return this.http.get(`http://localhost:3000/moive/${word}`).pipe(
+    const httpOptions = new  HttpHeaders()
+	  .set('Content-type', 'application/json')
+    .set('X-Requested-With', 'HttpRequest')
+    return this.http.get(`https://cors-anywhere.herokuapp.com/https://harrychor304cembackend.herokuapp.com/moive/${word}`).pipe(
       retry(1),
       catchError(this.handleError)
     );
