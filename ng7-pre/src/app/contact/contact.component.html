@@ -4,7 +4,32 @@
  <h3>{{ moive.Title }}</h3>
  <h3>Year: {{ moive.Year }}</h3>       
  <p><img src="{{ moive.Poster }}"></p>
- <button class="button" (click)="delFav(i)" confirm="Are you sure"
- 
- >Delete Favourites</button>
- </li>
+ <button type="button" class="btn btn-primary"  (click)="open(i)" data-toggle="modal" data-target="#myModal">
+    Delete Favourites
+</button>
+
+ <div class="modal" id="myModal" [style.display]="showModal ? 'block' : 'none'">>
+    <div class="modal-dialog">
+      <div class="modal-content">
+  
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">WARNNING</h4>
+          <button type="button" class="close" (click) = "hide()"data-dismiss="modal">&times;</button>
+        </div>
+  
+        <!-- Modal body -->
+        <div class="modal-body">
+          Are you want to Delete
+        </div>
+  
+        <!-- Modal footer -->
+        <div class="modal-footer">
+            <button class="button" (click)="delFav()">Yes</button>
+            <button type="button" class="btn btn-danger" (click) = "hide()" data-dismiss="modal">Close</button>
+        </div>
+  
+      </div>
+    </div>
+  </div>
+</li>
