@@ -23,7 +23,7 @@ export class HomeComponent implements OnInit {
     this.data.getMoives(`${newSearch}`).subscribe(data=>{
     this.moives = data;	
     if (localStorage.getItem('loggedIn') != null){
-      this.showModal = false;
+      this.showModal = true;
     }
     console.log(this.moives)
     })
@@ -41,7 +41,7 @@ export class HomeComponent implements OnInit {
   
   
  ngOnInit() {
-
+  this.showModal = false;
 }
 
 }
