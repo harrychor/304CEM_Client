@@ -162,7 +162,7 @@ constructor(private http: HttpClient, private router: Router ,private authservic
     const httpOptions = new  HttpHeaders()
 	  .set('Content-type', 'application/json')
     .set('X-Requested-With', 'HttpRequest')
-    return this.http.get<userdata>(`https://cors-anywhere.herokuapp.com/https://harrychor304cembackend.herokuapp.com/favourites/${delID}`).pipe(
+    return this.http.delete(`https://cors-anywhere.herokuapp.com/https://harrychor304cembackend.herokuapp.com/favourites/${delID}`).pipe(
       retry(1),
       catchError(this.handleError),
       )
