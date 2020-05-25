@@ -29,8 +29,9 @@ export class ContactComponent implements OnInit {
     const i = sessionStorage.getItem('deleteID');
     console.log(this.moives[i]['_id'])
     const delID = this.moives[i]['_id']
+    this.data.delFavData(delID)
     this.hide()
     //window.alert();
-    this.data.delFavData(delID)
+   
   }
 }

@@ -165,7 +165,9 @@ constructor(private http: HttpClient, private router: Router ,private authservic
     return this.http.delete(`https://cors-anywhere.herokuapp.com/https://harrychor304cembackend.herokuapp.com/favourites/${delID}`).pipe(
       retry(1),
       catchError(this.handleError),
-      )
+      ).subscribe(data =>{
+        console.log(data)
+      });
   }
 
 
