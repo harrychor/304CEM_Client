@@ -10,7 +10,7 @@
  <h3>{{ moive.Title }}</h3>
  <h3>Year: {{ moive.Year }}</h3>       
  <p><img src="{{ moive.Poster }}"></p>
- <button class="button" (click)="addFav(i)">  Add to Favourites</button>
+ <button *ngIf="showModal" class="button" (click)="addFav(i)">  Add to Favourites</button>
  </li>
  
 </ul>

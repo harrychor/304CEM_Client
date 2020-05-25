@@ -15,13 +15,16 @@ interface moiveData{
 export class HomeComponent implements OnInit {
   users: Object;
   moives:Object;
+  showModal: boolean;
   constructor(private data: DataService) { }
 
   addSearch(newSearch:string){
     if(newSearch!=''){
     this.data.getMoives(`${newSearch}`).subscribe(data=>{
-    
     this.moives = data;	
+    if (localStorage.getItem('loggedIn') != null){
+      this.showModal = false;
+    }
     console.log(this.moives)
     })
     }
